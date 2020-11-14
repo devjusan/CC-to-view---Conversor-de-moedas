@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  color: #333;
+  --type-first: Helvetica, Arial, sans-serif;
+  --type-second: 'Spectral', Georgia;
+  font-family: var(--type-first);
+}
+
+h1,
+h2,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.title {
+  position: relative;
+  font-family: var(--type-second);
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 0.4rem;
+  margin-bottom: 1.2rem;
+  z-index: 1;
+}
+
+.title::before {
+  content: '';
+  position: absolute;
+  background-color: #fb9;
+  height: 1.5rem;
+  width: 1.5rem;
+  bottom: 8px;
+  left: 2.5rem;
+  justify-content: flex-end;
+  z-index: -1;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 1241px) {
+  .title::before {
+    left: 2.5rem;
+  }
+}

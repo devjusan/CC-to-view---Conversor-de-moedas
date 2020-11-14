@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  top: 0;
+  padding: 2rem 0;
+  background: #ddd;
+}
+
+.footer p {
+  margin-left: 2rem;
+}
