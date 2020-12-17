@@ -9,7 +9,7 @@ export function GET_CURRENTS() {
   };
 }
 
-export function GET_API_DATA(startDate, endDate, exitCurrent) {
+export function GET_API_DATA({ startDate, endDate, exitCurrent }) {
   return {
     url: `https://api.exchangerate.host/timeseries?start_date=${endDate}&end_date=${startDate}&base=${exitCurrent}&symbols=BRL&amount=1`,
     options: {

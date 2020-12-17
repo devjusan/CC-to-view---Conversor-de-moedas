@@ -1,27 +1,25 @@
 import React from 'react';
-import { GET_API_DATA } from '../../Api';
-import useFetch from '../../Hook/useFetch';
 import Error from '../Helper/Error';
 import styles from './CurrentGraphs.module.css';
 import { Line } from 'react-chartjs-2';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentHistory } from '../../store/currentGraph';
 
 const CurrentGraphs = ({ startDate, endDate, selectedValue }) => {
-  const { url, options } = GET_API_DATA(startDate, endDate, selectedValue);
-  const { error, data, request } = useFetch();
   let graph = [];
   let dataVictory = [];
   let arrayData = [];
   let mouthsGraph = [];
   let numberGraph = [];
 
+  const dispatch = useDispatch();
   // receber dados da API e datas atuais do user
   React.useEffect(() => {
-    async function getData() {
-      await request(url, options);
-    }
-    getData();
-  }, [selectedValue]);
+    dispatch(fetchCurrentHistory(startDate, endDate, selectedValue));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValue, dispatch]);
 
+  const { data, error } = useSelector((state) => state.currentGraph);
   if (data) {
     // conversão de objeto para array
     arrayData = Object.entries(data.rates);

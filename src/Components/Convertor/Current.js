@@ -1,26 +1,27 @@
 import React from 'react';
-import { GET_CURRENTS } from '../../Api';
 import Select from '../Form/Select';
 import Error from '../Helper/Error';
-import useFetch from '../../Hook/useFetch';
 import styles from './Current.module.css';
 import CurrentGraphs from './CurrentGraphs';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentData } from '../../store/currentData';
 
 const Current = () => {
-  const { error, data, request } = useFetch();
-  const { url, options } = GET_CURRENTS();
+  const { data, error } = useSelector((state) => state.currentData);
   const [startDate, setStartDate] = React.useState(null);
   const [endDate, setEndDate] = React.useState(null);
   const [selectedValue, setSelectedValue] = React.useState('default');
   const selectOptions = [];
 
+  const dispatch = useDispatch();
   React.useEffect(() => {
-    async function getData() {
-      await request(url, options);
+    function getData() {
+      dispatch(fetchCurrentData());
     }
     getDate();
     getData();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   function getDate() {
     let now = new Date();

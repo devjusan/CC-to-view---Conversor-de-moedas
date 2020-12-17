@@ -8,7 +8,7 @@ const Convertor = () => {
       <div>
         <div>
           <h1 className="title">
-            CC to view <i className={styles.i}>Conversor de moedas</i>
+            CC to view <span className={styles.i}>Conversor de moedas</span>
           </h1>
         </div>
         <Current />
