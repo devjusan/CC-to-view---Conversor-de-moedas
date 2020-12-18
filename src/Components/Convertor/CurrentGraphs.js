@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentHistory } from '../../store/currentGraph';
 
 const CurrentGraphs = ({ startDate, endDate, selectedValue }) => {
+  const { data, error } = useSelector((state) => state.currentGraph);
+  console.log(selectedValue);
   let graph = [];
   let dataVictory = [];
   let arrayData = [];
@@ -16,10 +18,8 @@ const CurrentGraphs = ({ startDate, endDate, selectedValue }) => {
   // receber dados da API e datas atuais do user
   React.useEffect(() => {
     dispatch(fetchCurrentHistory(startDate, endDate, selectedValue));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedValue, dispatch]);
+  }, [dispatch, startDate, endDate, selectedValue]);
 
-  const { data, error } = useSelector((state) => state.currentGraph);
   if (data) {
     // conversão de objeto para array
     arrayData = Object.entries(data.rates);

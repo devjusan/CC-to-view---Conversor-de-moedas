@@ -45,17 +45,15 @@ export default function currentHistory(state = initialState, action) {
   }
 }
 
-export const fetchCurrentHistory = (
-  startDate,
-  endDate,
-  selectedValue,
-) => async (dispatch) => {
+export const fetchCurrentHistory = (startDate, endDate, exitCurrent) => async (
+  dispatch,
+) => {
   try {
     dispatch(fetchCHistoryStarted());
     const { url, options } = GET_API_DATA({
       startDate,
       endDate,
-      selectedValue,
+      exitCurrent,
     });
     const response = await fetch(url, options);
     const data = await response.json();
