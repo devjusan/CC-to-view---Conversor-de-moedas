@@ -4,12 +4,14 @@ import Footer from './Components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <main className="container">
-        <Convertor />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <div className="App">
+        <main className="container">
+          <Convertor />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
 

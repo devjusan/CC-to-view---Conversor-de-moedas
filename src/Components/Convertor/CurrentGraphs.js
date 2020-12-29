@@ -1,6 +1,5 @@
 import React from 'react';
 import Error from '../Helper/Error';
-import styles from './CurrentGraphs.module.css';
 import { Line } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentHistory } from '../../store/currentGraph';
@@ -58,13 +57,14 @@ const CurrentGraphs = ({ startDate, endDate, selectedValue }) => {
   if (error) return <Error error={error} />;
   if (data)
     return (
-      <div className={styles.currentGraphs}>
+      <div>
+        {' '}
         <Line
           data={graph}
           options={{
             legend: {
               display: true,
-              position: 'top',
+              fullWidth: true,
             },
           }}
         />

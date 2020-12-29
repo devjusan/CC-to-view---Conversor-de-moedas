@@ -52,27 +52,33 @@ const Current = () => {
   if (error) return <Error error={error} />;
   if (data)
     return (
-      <div className={styles.section}>
-        <p className={styles.choseCur}>Escolha a moeda a ser consultada!</p>
-        <Select
-          value={selectedValue}
-          onChange={({ target }) => setSelectedValue(target.value)}
-          placeholder="Selecionar moeda..."
-          options={selectOptions}
-        />
-
-        {selectedValue !== 'default' && (
-          <p className={styles.currentValue}>
-            A moeda selecionada foi o {selectedValue}
-          </p>
-        )}
-        {selectedValue !== 'default' && (
-          <CurrentGraphs
-            endDate={endDate}
-            startDate={startDate}
-            selectedValue={selectedValue}
+      <div className={styles.container}>
+        <div className={styles.choseCur}>Escolha a moeda a ser consultada!</div>
+        <div>
+          <Select
+            value={selectedValue}
+            onChange={({ target }) => setSelectedValue(target.value)}
+            placeholder="Selecionar moeda..."
+            options={selectOptions}
           />
-        )}
+        </div>
+
+        <div>
+          {selectedValue !== 'default' && (
+            <p className={styles.currentValue}>
+              A moeda selecionada foi o {selectedValue}
+            </p>
+          )}
+          {selectedValue !== 'default' && (
+            <div className={styles.currentSize}>
+              <CurrentGraphs
+                endDate={endDate}
+                startDate={startDate}
+                selectedValue={selectedValue}
+              />
+            </div>
+          )}
+        </div>
       </div>
     );
   else return null;
